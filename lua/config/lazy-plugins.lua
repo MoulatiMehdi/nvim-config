@@ -16,7 +16,14 @@ require('lazy').setup({
     {
         'MoulatiMehdi/nvim-norminette',
         config = function()
-            require 'norminette'
+            local norm = require 'norminette'
+            vim.keymap.set('n', '<F5>', function()
+                norm.norminette()
+            end, { noremap = true, silent = true })
+
+            vim.keymap.set('n', '<C-f>', function()
+                norm.formatter()
+            end, { noremap = true, silent = true })
         end,
     },
     {

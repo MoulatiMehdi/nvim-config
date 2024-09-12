@@ -20,10 +20,6 @@ require('lazy').setup({
         opts = { -- Configuration options for trouble.nvim
             use_diagnostic_signs = true, -- enable diagnostics icons
             indent_lines = true, -- add indent guide below the fold icons
-            error = '',
-            warning = '',
-            hint = '',
-            information = '',
         }, -- for default options, refer to the configuration section for custom setup.
         cmd = 'Trouble',
         keys = {
@@ -63,13 +59,22 @@ require('lazy').setup({
         'MoulatiMehdi/nvim-norminette',
         config = function()
             local norm = require 'norminette'
-            vim.keymap.set('n', '<F5>', function()
-                norm.norminette()
-            end, { noremap = true, silent = true })
+            norm.setup {
+                format_on_save = true,
+            }
+            vim.keymap.set(
+                'n',
+                '<F5>',
+                ':Norminette<CR>',
+                { noremap = true, silent = true }
+            )
 
-            vim.keymap.set('n', '<C-f>', function()
-                norm.formatter()
-            end, { noremap = true, silent = true })
+            vim.keymap.set(
+                'n',
+                '<C-f>',
+                ':Format<CR>',
+                { noremap = true, silent = true }
+            )
         end,
     },
     {

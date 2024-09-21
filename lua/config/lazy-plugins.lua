@@ -56,14 +56,15 @@ require('lazy').setup({
         },
     },
     {
-        'MoulatiMehdi/nvim-norminette',
+        'MoulatiMehdi/42norm.nvim',
         config = function()
             -- Load the Norminette plugin
-            local norm = require 'norminette'
+            local norm = require '42norm'
 
             norm.setup {
                 header_on_save = true,
                 format_on_save = true,
+                linter_on_change = true,
             }
             vim.keymap.set('n', '<F5>', function()
                 norm.check_norms()

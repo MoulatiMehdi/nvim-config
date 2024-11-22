@@ -63,8 +63,8 @@ require('lazy').setup({
 
             norm.setup {
                 header_on_save = true,
-                format_on_save = true,
-                linter_on_change = true,
+                format_on_save = false,
+                linter_on_change = false,
             }
             vim.keymap.set('n', '<F5>', function()
                 norm.check_norms()
@@ -166,7 +166,7 @@ require('lazy').setup({
     --  Uncomment any of the lines below to enable them (you will need to restart nvim).
     --
     -- require 'kickstart.plugins.debug',
-    require 'kickstart.plugins.indent_line',
+    --   require 'kickstart.plugins.indent_line',
     -- require 'kickstart.plugins.lint',
     require 'kickstart.plugins.autopairs',
     -- require 'kickstart.plugins.neo-tree',

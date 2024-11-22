@@ -4,6 +4,14 @@
 --  For more options, you can see `:help option-list`
 
 local opt = vim.opt
+local backup_dir = vim.fn.stdpath 'data' .. '/backup//'
+local undo_dir = vim.fn.stdpath 'data' .. '/undo//'
+local swap_dir = vim.fn.stdpath 'data' .. '/swap//'
+
+-- Create directories if they don't exist
+vim.fn.mkdir(backup_dir, 'p')
+vim.fn.mkdir(undo_dir, 'p')
+vim.fn.mkdir(swap_dir, 'p')
 
 -- Make line numbers default
 opt.number = true
@@ -26,7 +34,14 @@ opt.clipboard = 'unnamedplus'
 opt.breakindent = true
 
 -- Save undo history
+-- Enable and configure backup
+opt.backup = true
+opt.backupdir = backup_dir
+
+-- Enable persistent undo and configure undofile
 opt.undofile = true
+opt.undodir = undo_dir
+opt.directory = swap_dir -- Set swap directory
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 opt.ignorecase = true

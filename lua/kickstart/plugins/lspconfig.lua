@@ -215,7 +215,15 @@ return {
             local servers = {
                 bashls = {},
                 clangd = {
-                    cmd = { 'clangd', '--fallback-style=none' },
+                    cmd = { 'clangd' },
+                    capabilities = vim.tbl_deep_extend('force', capabilities, {
+                        textDocument = {
+                            formatting = {
+                                enable = true,
+                                dynamicRegistration = true,
+                            },
+                        },
+                    }),
                 },
                 lua_ls = {
                     -- cmd = {...},
@@ -247,6 +255,8 @@ return {
             vim.list_extend(ensure_installed, {
                 'stylua', -- Used to format Lua code
                 'beautysh',
+                'bashls',
+                'clangd',
             })
             require('mason-tool-installer').setup {
                 ensure_installed = ensure_installed,

@@ -1,5 +1,10 @@
 return {
-    require("plugins.conform"),
-    require("plugins.lspconfig"),
-    require("plugins.treesitter")
+
+	require "configs.mini",
+	require "configs.todo",
+	require "configs.mason",
+	require "configs.conform",
+	require "configs.lspconfig",
+	require "configs.treesitter",
+	require "configs.telescope",
 }

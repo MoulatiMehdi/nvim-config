@@ -1,6 +1,7 @@
 return {
 
 	require "configs.mini",
+	require "configs.autopairs",
 	require "configs.todo",
 	require "configs.mason",
 	require "configs.conform",

@@ -1,8 +1,9 @@
 require "nvchad.mappings"
 
+
 -- add yours here
 local map = vim.keymap.set
-
+local norm = require("42norm")
 -- Exit Terminal mode
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -19,3 +20,11 @@ map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Save 
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+-- Press "F5" key to run the norminette
+vim.keymap.set("n", "<F5>", function()
+        norm.check_norms()
+end, { desc = "Update 42norms diagnostics", noremap = true, silent = true })
+
+vim.keymap.set("n", "<C-f>", function()
+    norm.format()
+end, { desc = "Format buffer on 42norms", noremap = true, silent = true })

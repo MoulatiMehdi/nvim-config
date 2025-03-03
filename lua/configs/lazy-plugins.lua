@@ -1,5 +1,7 @@
 local lazy_config = require "configs.lazy-config"
 
+require "configs.lazy-bootstrap"
+
 -- load plugins
 require("lazy").setup({
   {

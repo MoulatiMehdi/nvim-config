@@ -16,7 +16,6 @@ return {
 		options = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				c = { "clangd" },
 			},
 
 			format_on_save = {

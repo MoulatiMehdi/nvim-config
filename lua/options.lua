@@ -17,6 +17,7 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.numberwidth = 5
+opt.wrap = false
 
 opt.hlsearch = true
 opt.number = true

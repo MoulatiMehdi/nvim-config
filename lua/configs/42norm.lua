@@ -2,8 +2,8 @@ local norm = require("42norm")
 
 norm.setup({
     header_on_save = false,
-    format_on_save = false,
-    liner_on_change = false,
+    format_on_save = true,
+    liner_on_change = true,
 })
 vim.api.nvim_create_user_command("Stdheader", function()
     norm.stdheader()
@@ -18,7 +18,7 @@ if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
     vim.api.nvim_create_user_command("Norminette", function()
         norm.check_norms()
     end, {})
-    vim.api.nvim_create_user_command("Format", function()
+    vim.api.nvim_create_user_command("42Format", function()
         norm.format()
     end, {})
 end

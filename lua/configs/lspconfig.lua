@@ -5,7 +5,7 @@ local lspconfig = require "lspconfig"
 local on_attach = nvchad_lsp.on_attach
 local on_init = nvchad_lsp.on_init
 local capabilities = nvchad_lsp.capabilities
-local servers = {"clangd", "bashls", "lua_ls" }
+local servers = { "clangd", "bashls", "lua_ls" }
 
 return {
     {
@@ -50,14 +50,14 @@ return {
                         on_attach = on_attach,
                         on_init = on_init,
                         capabilities = capabilities,
-                        cmd = {"clangd" , "--fallback-style=none"},
-                        filetypes = { "c","cpp" },                                                                                      -- Explicit filetypes for clangd
+                        cmd = { "clangd", "--fallback-style=none" },
+                        filetypes = { "c", "cpp", "hpp" }, -- Explicit filetypes for clangd
                         init_options = {
-                            usePlaceholders = true,                                                                               -- Enable placeholders for completion
+                            usePlaceholders = true,      -- Enable placeholders for completion
                             completion = {
-                                snippets = "insert",                                                                              -- Allow insertion of snippets
+                                snippets = "insert",     -- Allow insertion of snippets
                             },
-                            clangdFileStatus = true,                                                                              -- Show file status (indexing progress)
+                            clangdFileStatus = true,     -- Show file status (indexing progress)
                         },
                         settings = {
                             clangd = {

@@ -6,10 +6,10 @@ local M = {
 	ui = {
 		theme = "onedark",
 		telescope = { style = "bordered" },
-		-- hl_override = {
-		-- 	Comment = { italic = true },
-		-- 	["@comment"] = { italic = true },
-		-- },
+		hl_override = {
+			Comment = { italic = true },
+			["@comment"] = { italic = true },
+		},
 	},
 }
 

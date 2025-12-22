@@ -46,7 +46,7 @@ return {
             nvchad_lsp.defaults()
             for _, lsp in ipairs(servers) do
                 if lsp == "clangd" then
-                    lspconfig(lsp, {
+                    lspconfig[lsp] = {
                         on_attach = on_attach,
                         on_init = on_init,
                         capabilities = capabilities,
@@ -83,14 +83,15 @@ return {
                                 },
                             },
                         },
-                    })
+                    }
                 else
-                    lspconfig(lsp, {
+                    lspconfig[lsp] = {
                         on_attach = on_attach,
                         on_init = on_init,
                         capabilities = capabilities,
-                    })
+                    }
                 end
+                vim.lsp.enable(lsp)
             end
         end,
     },

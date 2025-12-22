@@ -1,12 +1,12 @@
 return {
-    -- {
-    --     "MoulatiMehdi/42norm.nvim",
-    --     ft = { "c", "cpp" },  -- Only load the plugin for .c and .cpp files
-    --     lazy = false,
-    --     config = function()
-    --         require("configs.42norm")
-    --     end
-    -- },
+    {
+        "MoulatiMehdi/42norm.nvim",
+        ft = { "c" },  -- Only load the plugin for .c and .cpp files
+        lazy = false,
+        config = function()
+            require("configs.42norm")
+        end
+    },
     -- require "configs.autopairs",
     { import = "nvchad.blink.lazyspec" },
     require"configs.HeaderGuard",

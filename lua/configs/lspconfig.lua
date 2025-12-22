@@ -1,6 +1,6 @@
 -- EXAMPLE
 local nvchad_lsp = require "nvchad.configs.lspconfig"
-local lspconfig = require "lspconfig"
+local lspconfig = vim.lsp.config
 
 local on_attach = nvchad_lsp.on_attach
 local on_init = nvchad_lsp.on_init
@@ -46,42 +46,50 @@ return {
             nvchad_lsp.defaults()
             for _, lsp in ipairs(servers) do
                 if lsp == "clangd" then
-                    lspconfig[lsp].setup {
+                    lspconfig(lsp, {
                         on_attach = on_attach,
                         on_init = on_init,
                         capabilities = capabilities,
-                        cmd = { "clangd", "--fallback-style=none" },
+                        cmd = {
+                            "clangd",
+                            "--fallback-style=none",
+                            "--clang-tidy",
+                            "--background-index",
+                            "--function-arg-placeholders=disabled",
+                            "--compile-commands-dir=.",
+                            "--header-insertion=iwyu",
+                            "--query-driver=/usr/bin/c++",
+                        },
                         filetypes = { "c", "cpp", "hpp" }, -- Explicit filetypes for clangd
                         init_options = {
-                            usePlaceholders = true,      -- Enable placeholders for completion
+                            usePlaceholders = false,       -- Enable placeholders for completion
                             completion = {
-                                snippets = "insert",     -- Allow insertion of snippets
+                                snippets = "insert",       -- Allow insertion of snippets
                             },
-                            clangdFileStatus = true,     -- Show file status (indexing progress)
+                            clangdFileStatus = true,       -- Show file status (indexing progress)
                         },
                         settings = {
                             clangd = {
                                 compileFlags = {
                                     add = {
-                                        "-xc++",
                                         "-std=c++98",
                                         "-Wall",
                                         "-Wextra",
                                         "-Werror",
+                                        "-Wshadow"
                                     },
                                 },
                                 completion = {
-                                    filter = "code",
                                 },
                             },
                         },
-                    }
+                    })
                 else
-                    lspconfig[lsp].setup {
+                    lspconfig(lsp, {
                         on_attach = on_attach,
                         on_init = on_init,
                         capabilities = capabilities,
-                    }
+                    })
                 end
             end
         end,

@@ -1,7 +1,6 @@
 return {
-    require("configs.42norm"),
-    -- require "configs.autopairs",
     { import = "nvchad.blink.lazyspec" },
+    require("configs.42norm"),
     require "configs.HeaderGuard",
     require "configs.cmp",
     require "configs.mini",

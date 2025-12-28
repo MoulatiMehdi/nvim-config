@@ -56,7 +56,6 @@ return {
                             "--clang-tidy",
                             "--background-index",
                             "--function-arg-placeholders=disabled",
-                            "--compile-commands-dir=.",
                             "--header-insertion=iwyu",
                             "--query-driver=/usr/bin/c++",
                         },

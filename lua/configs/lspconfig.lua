@@ -5,7 +5,47 @@ local lspconfig = vim.lsp.config
 local on_attach = nvchad_lsp.on_attach
 local on_init = nvchad_lsp.on_init
 local capabilities = nvchad_lsp.capabilities
-local servers = { "clangd", "bashls", "lua_ls" }
+local servers = { "clangd", "bashls", "lua_ls", "pyright" }
+
+local clangd_config = {
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+    cmd = {
+        "clangd",
+        "--fallback-style=none",
+        "--clang-tidy",
+        "--background-index",
+        "--function-arg-placeholders=disabled",
+        "--header-insertion=iwyu",
+        "--query-driver=/usr/bin/c++",
+    },
+    filetypes = { "c", "cpp", "hpp", "tpp" }, -- Explicit filetypes for clangd
+    init_options = {
+        usePlaceholders = false,              -- Enable placeholders for completion
+        completion = {
+            snippets = "insert",              -- Allow insertion of snippets
+        },
+        clangdFileStatus = true,              -- Show file status (indexing progress)
+    },
+    settings = {
+        clangd = {
+            compileFlags = {
+                add = {
+                    "-std=c++98",
+                    "-Wall",
+                    "-Wextra",
+                    "-Werror",
+                    "-Wshadow",
+                    "-xc++"
+                },
+            },
+            completion = {
+            },
+        },
+    },
+}
+
 
 return {
     {
@@ -42,47 +82,12 @@ return {
             require("mason").setup()
             require("mason-tool-installer").setup {
                 ensure_installed = servers,
+                run_on_start = true,
             }
             nvchad_lsp.defaults()
             for _, lsp in ipairs(servers) do
                 if lsp == "clangd" then
-                    lspconfig[lsp] = {
-                        on_attach = on_attach,
-                        on_init = on_init,
-                        capabilities = capabilities,
-                        cmd = {
-                            "clangd",
-                            "--fallback-style=none",
-                            "--clang-tidy",
-                            "--background-index",
-                            "--function-arg-placeholders=disabled",
-                            "--header-insertion=iwyu",
-                            "--query-driver=/usr/bin/c++",
-                        },
-                        filetypes = { "c", "cpp", "hpp" }, -- Explicit filetypes for clangd
-                        init_options = {
-                            usePlaceholders = false,       -- Enable placeholders for completion
-                            completion = {
-                                snippets = "insert",       -- Allow insertion of snippets
-                            },
-                            clangdFileStatus = true,       -- Show file status (indexing progress)
-                        },
-                        settings = {
-                            clangd = {
-                                compileFlags = {
-                                    add = {
-                                        "-std=c++98",
-                                        "-Wall",
-                                        "-Wextra",
-                                        "-Werror",
-                                        "-Wshadow"
-                                    },
-                                },
-                                completion = {
-                                },
-                            },
-                        },
-                    }
+                    lspconfig[lsp] = clangd_config
                 else
                     lspconfig[lsp] = {
                         on_attach = on_attach,

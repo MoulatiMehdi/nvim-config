@@ -1,4 +1,5 @@
 require "nvchad.mappings"
+require "HeaderGuard"
 
 
 local map = vim.keymap.set
@@ -14,8 +15,6 @@ map({ 'n', 'v' }, '<leader>ca', function()
     vim.lsp.buf.code_action({ apply = true })
 end, { desc = '[C]ode [A]ction' })
 
-map({ "n", "v" }, "<leader>gi", require "HeaderGuard".insertGuard,
-    { desc = "[G]uard [I]nsert", buffer = true })
 -- Save
 -- -- Press "F5" key to run the norminette
 -- vim.keymap.set("n", "<F5>", function()

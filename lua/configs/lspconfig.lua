@@ -19,6 +19,7 @@ local clangd_config = {
         "--function-arg-placeholders=disabled",
         "--header-insertion=iwyu",
         "--query-driver=/usr/bin/c++",
+        "--compile-commands-dir=${workspaceFolder}"
     },
     filetypes = { "c", "cpp", "hpp", "tpp" }, -- Explicit filetypes for clangd
     init_options = {
@@ -37,7 +38,6 @@ local clangd_config = {
                     "-Wextra",
                     "-Werror",
                     "-Wshadow",
-                    "-xc++"
                 },
             },
             completion = {

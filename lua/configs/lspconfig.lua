@@ -5,7 +5,7 @@ local lspconfig = vim.lsp.config
 local on_attach = nvchad_lsp.on_attach
 local on_init = nvchad_lsp.on_init
 local capabilities = nvchad_lsp.capabilities
-local servers = { "clangd", "bashls", "lua_ls", "pyright" }
+local servers = { "clangd", "bashls", "lua_ls", "pyright", "yamlfmt" }
 
 local clangd_config = {
     on_attach = on_attach,

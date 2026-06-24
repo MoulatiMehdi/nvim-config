@@ -10,4 +10,5 @@ return {
     require "configs.lspconfig",
     require "configs.treesitter",
     require "configs.telescope",
+    require "configs.oil"
 }

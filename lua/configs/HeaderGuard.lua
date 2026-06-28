@@ -8,7 +8,7 @@ return {
             { desc = "[G]uard [I]nsert", buffer = true })
 
         -- NOTE: AUTOCOMMANDS
-        vim.api.nvim_create_autocmd("BufWinEnter", {
+        vim.api.nvim_create_autocmd({"BufWinEnter","BufNewFile"}, {
             pattern = { "*.h", "*.hpp" },
             callback = M.insertGuard,
         })

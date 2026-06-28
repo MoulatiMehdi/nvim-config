@@ -7,11 +7,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
-
-
--- NOTE: AUTOCOMMANDS
--- inset Guard for a C C++ header
-vim.api.nvim_create_autocmd("BufNewFile", {
-    pattern = { "*.h", "*.hpp" },
-    callback = require "HeaderGuard".insertGuard
-})

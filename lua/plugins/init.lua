@@ -1,5 +1,5 @@
 return {
-    { import = "nvchad.blink.lazyspec" },
+     { import = "nvchad.blink.lazyspec" },
     -- require("configs.42norm"),
     require "configs.HeaderGuard",
     require "configs.cmp",

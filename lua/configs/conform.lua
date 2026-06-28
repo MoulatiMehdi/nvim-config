@@ -17,7 +17,8 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 cpp = { "clangd" },
-                yaml = { "yamlfmt" }
+                yaml = { "yamlfmt" },
+                shell = { "shfmt" }
             },
 
             format_on_save = {
